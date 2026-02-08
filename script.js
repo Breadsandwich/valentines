@@ -258,15 +258,17 @@
 
   function growYesButton() {
     if (hasAnswered) return
-    yesScale = yesScale * 1.02
+    yesScale = yesScale * 1.05
     btnYes.style.transform = 'scale(' + yesScale + ')'
 
-    if (yesScale >= 1.1) {
+    if (yesScale >= 5) {
       btnNo.style.display = 'none'
     }
   }
 
-  /* ---- Flee wrapper that also grows the Yes button ---- */
+  /* ---- Flee wrapper that also grows the Yes button (once per dodge) ---- */
+
+  let isInFleeZone = false
 
   function fleeAndGrow(cursorX, cursorY) {
     const rect = btnNo.getBoundingClientRect()
@@ -275,7 +277,12 @@
     const dist = distanceBetween(cursorX, cursorY, btnCenterX, btnCenterY)
 
     if (dist <= FLEE_DISTANCE) {
-      growYesButton()
+      if (!isInFleeZone) {
+        isInFleeZone = true
+        growYesButton()
+      }
+    } else {
+      isInFleeZone = false
     }
 
     fleeFrom(cursorX, cursorY)
