@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will You Be My Valentine?</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <canvas id="hearts-canvas" aria-hidden="true"></canvas>
+
+  <main class="scene" id="question-scene">
+    <div class="question-card">
+      <div class="decorative-heart top-heart" aria-hidden="true">&hearts;</div>
+      <h1 class="question-text">
+        <span class="line line-1">Will you be</span>
+        <span class="line line-2">my Valentine?</span>
+      </h1>
+      <div class="decorative-heart bottom-heart" aria-hidden="true">&hearts;</div>
+      <div class="button-row">
+        <button class="btn btn-yes" id="btn-yes" type="button">Yes</button>
+      </div>
+    </div>
+  </main>
+
+  <button class="btn btn-no" id="btn-no" type="button">No</button>
+
+  <main class="scene scene-hidden" id="answer-scene" aria-live="polite">
+    <div class="answer-card">
+      <div class="answer-heart-burst" id="heart-burst" aria-hidden="true"></div>
+      <p class="answer-text">
+        <span class="answer-line answer-line-1">I knew you</span>
+        <span class="answer-line answer-line-2">would say that.</span>
+      </p>
+      <div class="answer-heart-pulse" aria-hidden="true">&hearts;</div>
+    </div>
+  </main>
+
+  <main class="scene scene-hidden" id="reject-scene" aria-live="polite">
+    <div class="reject-card">
+      <p class="reject-text">
+        <span class="reject-line reject-line-1">How could you</span>
+        <span class="reject-line reject-line-2">:(</span>
+      </p>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
