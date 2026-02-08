@@ -236,9 +236,9 @@ body {
 .btn-no {
   position: fixed;
   z-index: 10;
-  background: transparent;
+  background: var(--rose-deep);
   color: var(--rose-pale);
-  border: 2px solid rgba(242, 160, 173, 0.4);
+  border: 2px solid var(--rose-soft);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
   transition:
     left 0.3s cubic-bezier(0.22, 1, 0.36, 1),

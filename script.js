@@ -256,12 +256,12 @@
 
   let yesScale = 1
 
-  function growYesButton() {
+  function growYesButton(rate) {
     if (hasAnswered) return
-    yesScale = yesScale * 1.05
+    yesScale = yesScale * rate
     btnYes.style.transform = 'scale(' + yesScale + ')'
 
-    if (yesScale >= 5) {
+    if (yesScale >= 25) {
       btnNo.style.display = 'none'
     }
   }
@@ -279,7 +279,7 @@
     if (dist <= FLEE_DISTANCE) {
       if (!isInFleeZone) {
         isInFleeZone = true
-        growYesButton()
+        growYesButton(1.1)
       }
     } else {
       isInFleeZone = false
@@ -306,7 +306,7 @@
     e.preventDefault()
 
     const touch = e.touches[0]
-    growYesButton()
+    growYesButton(1.3)
 
     /* Jump to a random far-away position */
     const rect = btnNo.getBoundingClientRect()
@@ -336,20 +336,12 @@
     btnNo.style.top = pos.y + 'px'
   })
 
-  /* No button click — show rejection scene (desktop fallback) */
-  const rejectScene = document.getElementById('reject-scene')
-
-  btnNo.addEventListener('click', function () {
+  /* No button click — punish with 30% growth and flee */
+  btnNo.addEventListener('click', function (e) {
     if (hasAnswered) return
-    hasAnswered = true
-
-    questionScene.classList.add('scene-hidden')
-    btnNo.style.display = 'none'
-    document.body.classList.add('rejected')
-
-    setTimeout(function () {
-      rejectScene.classList.remove('scene-hidden')
-      rejectScene.classList.add('scene-visible')
-    }, 500)
+    e.preventDefault()
+    growYesButton(1.3)
+    const rect = btnNo.getBoundingClientRect()
+    fleeFrom(rect.left + rect.width / 2, rect.top + rect.height / 2)
   })
 })()
